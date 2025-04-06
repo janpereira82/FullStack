@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejamento das Iterações - Sistema "Esse eu já li!"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        h1 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            margin-top: 25px;
+            color: #0066cc;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .user-story-tasks {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #0066cc;
+        }
+        .burndown-chart {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            text-align: center;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+        }
+        @media print {
+            body {
+                margin: 1cm;
+            }
+            .user-story-tasks, .burndown-chart {
+                break-inside: avoid;
+            }
+            table {
+                break-inside: auto;
+            }
+            tr {
+                break-inside: avoid;
+                break-after: auto;
+            }
+            thead {
+                display: table-header-group;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Planejamento das Iterações - Sistema "Esse eu já li!"</h1>
+
+    <h2>Divisão das User Stories em Tarefas</h2>
+
+    <div class="user-story-tasks">
+        <h3>User Story 1: Logar usuário (3 pontos)</h3>
+        <ol>
+            <li>Criar modelo de usuário - 2h</li>
+            <li>Criar tela de login - 2h</li>
+            <li>Implementar autenticação - 3h</li>
+            <li>Implementar redirecionamento após login - 1h</li>
+            <li>Implementar validação de credenciais - 2h</li>
+            <li>Testes de aceitação - 2h</li>
+        </ol>
+    </div>
+
+    <div class="user-story-tasks">
+        <h3>User Story 2: Visualizar lista de livros (2 pontos)</h3>
+        <ol>
+            <li>Criar modelo de livro - 2h</li>
+            <li>Criar tela de listagem de livros - 3h</li>
+            <li>Implementar paginação - 2h</li>
+            <li>Implementar filtro por estilo - 2h</li>
+            <li>Testes de aceitação - 1h</li>
+        </ol>
+    </div>
+
+    <div class="user-story-tasks">
+        <h3>User Story 3: Visualizar livro (2 pontos)</h3>
+        <ol>
+            <li>Criar tela de detalhes do livro - 2h</li>
+            <li>Implementar rota para visualização de livro - 1h</li>
+            <li>Exibir status de leitura do livro - 2h</li>
+            <li>Implementar botão para marcar como lido - 1h</li>
+            <li>Testes de aceitação - 1h</li>
+        </ol>
+    </div>
+
+    <div class="user-story-tasks">
+        <h3>User Story 4: Marcar leitura de livro (5 pontos)</h3>
+        <ol>
+            <li>Criar modelo de leitura de livro - 2h</li>
+            <li>Implementar lógica de marcação de livro como lido - 2h</li>
+            <li>Implementar cálculo de pontos - 2h</li>
+            <li>Criar modelo de troféu - 1h</li>
+            <li>Implementar lógica de concessão de troféus - 3h</li>
+            <li>Implementar validação para evitar duplicidade - 1h</li>
+            <li>Testes de aceitação - 3h</li>
+        </ol>
+    </div>
+
+    <div class="user-story-tasks">
+        <h3>User Story 5: Visualizar ranking de usuários (3 pontos)</h3>
+        <ol>
+            <li>Criar tela de ranking - 2h</li>
+            <li>Implementar consulta para obter top 10 usuários - 2h</li>
+            <li>Exibir informações de cada usuário no ranking - 1h</li>
+            <li>Implementar atualização do ranking - 2h</li>
+            <li>Testes de aceitação - 1h</li>
+        </ol>
+    </div>
+
+    <div class="user-story-tasks">
+        <h3>User Story 6: Visualizar pontos e troféus de usuário (3 pontos)</h3>
+        <ol>
+            <li>Criar tela de perfil do usuário - 2h</li>
+            <li>Exibir pontos do usuário - 1h</li>
+            <li>Criar modelo de troféu do usuário - 1h</li>
+            <li>Exibir troféus conquistados - 2h</li>
+            <li>Exibir informações sobre como conquistar novos troféus - 1h</li>
+            <li>Testes de aceitação - 1h</li>
+        </ol>
+    </div>
+
+    <h2>Planejamento das Iterações</h2>
+
+    <h3>Iteração 1 (2 semanas)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>User Story</th>
+                <th>Tarefas</th>
+                <th>Estimativa (h)</th>
+                <th>Tempo Real (h)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>US1: Logar usuário</td>
+                <td>Criar modelo de usuário</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US1: Logar usuário</td>
+                <td>Criar tela de login</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US1: Logar usuário</td>
+                <td>Implementar autenticação</td>
+                <td>3</td>
+                <td>3.5</td>
+            </tr>
+            <tr>
+                <td>US1: Logar usuário</td>
+                <td>Implementar redirecionamento após login</td>
+                <td>1</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>US1: Logar usuário</td>
+                <td>Implementar validação de credenciais</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US1: Logar usuário</td>
+                <td>Testes de aceitação</td>
+                <td>2</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>US2: Visualizar lista de livros</td>
+                <td>Criar modelo de livro</td>
+                <td>2</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>US2: Visualizar lista de livros</td>
+                <td>Criar tela de listagem de livros</td>
+                <td>3</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>US2: Visualizar lista de livros</td>
+                <td>Implementar paginação</td>
+                <td>2</td>
+                <td>2.5</td>
+            </tr>
+            <tr>
+                <td>US2: Visualizar lista de livros</td>
+                <td>Implementar filtro por estilo</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US2: Visualizar lista de livros</td>
+                <td>Testes de aceitação</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>US3: Visualizar livro</td>
+                <td>Criar tela de detalhes do livro</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US3: Visualizar livro</td>
+                <td>Implementar rota para visualização de livro</td>
+                <td>1</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>US3: Visualizar livro</td>
+                <td>Exibir status de leitura do livro</td>
+                <td>2</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>US3: Visualizar livro</td>
+                <td>Implementar botão para marcar como lido</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>US3: Visualizar livro</td>
+                <td>Testes de aceitação</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Total</strong></td>
+                <td><strong>29</strong></td>
+                <td><strong>28</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Iteração 2 (2 semanas)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>User Story</th>
+                <th>Tarefas</th>
+                <th>Estimativa (h)</th>
+                <th>Tempo Real (h)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>US4: Marcar leitura de livro</td>
+                <td>Criar modelo de leitura de livro</td>
+                <td>2</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>US4: Marcar leitura de livro</td>
+                <td>Implementar lógica de marcação de livro como lido</td>
+                <td>2</td>
+                <td>2.5</td>
+            </tr>
+            <tr>
+                <td>US4: Marcar leitura de livro</td>
+                <td>Implementar cálculo de pontos</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US4: Marcar leitura de livro</td>
+                <td>Criar modelo de troféu</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>US4: Marcar leitura de livro</td>
+                <td>Implementar lógica de concessão de troféus</td>
+                <td>3</td>
+                <td>3.5</td>
+            </tr>
+            <tr>
+                <td>US4: Marcar leitura de livro</td>
+                <td>Implementar validação para evitar duplicidade</td>
+                <td>1</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>US4: Marcar leitura de livro</td>
+                <td>Testes de aceitação</td>
+                <td>3</td>
+                <td>2.5</td>
+            </tr>
+            <tr>
+                <td>US5: Visualizar ranking de usuários</td>
+                <td>Criar tela de ranking</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US5: Visualizar ranking de usuários</td>
+                <td>Implementar consulta para obter top 10 usuários</td>
+                <td>2</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>US5: Visualizar ranking de usuários</td>
+                <td>Exibir informações de cada usuário no ranking</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>US5: Visualizar ranking de usuários</td>
+                <td>Implementar atualização do ranking</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US5: Visualizar ranking de usuários</td>
+                <td>Testes de aceitação</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>US6: Visualizar pontos e troféus de usuário</td>
+                <td>Criar tela de perfil do usuário</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US6: Visualizar pontos e troféus de usuário</td>
+                <td>Exibir pontos do usuário</td>
+                <td>1</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>US6: Visualizar pontos e troféus de usuário</td>
+                <td>Criar modelo de troféu do usuário</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>US6: Visualizar pontos e troféus de usuário</td>
+                <td>Exibir troféus conquistados</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>US6: Visualizar pontos e troféus de usuário</td>
+                <td>Exibir informações sobre como conquistar novos troféus</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>US6: Visualizar pontos e troféus de usuário</td>
+                <td>Testes de aceitação</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Total</strong></td>
+                <td><strong>30</strong></td>
+                <td><strong>29</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Burndown Chart</h2>
+
+    <div class="burndown-chart">
+        <h3>Iteração 1</h3>
+        <pre>
+Horas Restantes
+^
+|
+29 *
+|  \
+|   \
+|    \
+|     \
+|      \
+|       \
+|        \
+|         \
+|          \
+|           \
+|            \
+|             \
+|              \
+|               \
+|                \
+|                 \
+|                  \
+|                   \
+|                    \
+|                     *
+0 +---------------------> Dias
+   1                  10
+        </pre>
+    </div>
+
+    <div class="burndown-chart">
+        <h3>Iteração 2</h3>
+        <pre>
+Horas Restantes
+^
+|
+30 *
+|  \
+|   \
+|    \
+|     \
+|      \
+|       \
+|        \
+|         \
+|          \
+|           \
+|            \
+|             \
+|              \
+|               \
+|                \
+|                 \
+|                  \
+|                   \
+|                    \
+|                     *
+0 +---------------------> Dias
+   1                  10
+        </pre>
+    </div>
+
+    <div>
+        <h3>Observações:</h3>
+        <ul>
+            <li>As estimativas foram feitas com base na complexidade das tarefas e na experiência da equipe.</li>
+            <li>O tempo real foi registrado após a conclusão de cada tarefa.</li>
+            <li>O burndown chart mostra o progresso da equipe ao longo das iterações, com uma queda constante nas horas restantes, indicando um bom ritmo de trabalho.</li>
+        </ul>
+    </div>
+</body>
+</html>

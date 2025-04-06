@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramas do Sistema "Esse eu já li!"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        h1 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .diagram-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+        .justification {
+            background-color: #e9f7ef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        @media print {
+            body {
+                margin: 1cm;
+            }
+            .diagram-section {
+                break-inside: avoid;
+            }
+            pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagramas do Sistema "Esse eu já li!"</h1>
+
+    <div class="justification">
+        <h2>Justificativa dos Diagramas Escolhidos</h2>
+        <p>Para este projeto, foram escolhidos dois diagramas principais para auxiliar na compreensão do sistema:</p>
+        <ol>
+            <li><strong>Diagrama de Classes (Modelo de Domínio)</strong>: Este diagrama foi escolhido para representar as entidades principais do sistema e seus relacionamentos. Ele ajuda a entender a estrutura de dados e as regras de negócio do sistema.</li>
+            <li><strong>Diagrama de Casos de Uso</strong>: Este diagrama foi escolhido para representar as interações entre os usuários e o sistema. Ele ajuda a entender as funcionalidades disponíveis e como os usuários interagem com o sistema.</li>
+        </ol>
+    </div>
+
+    <div class="diagram-section">
+        <h2>Diagrama de Classes (Modelo de Domínio)</h2>
+        <pre>
++----------------+       +----------------+       +----------------+
+|     Usuário    |       |     Livro      |       |     Troféu     |
++----------------+       +----------------+       +----------------+
+| id: int        |       | id: int        |       | id: int        |
+| nome: str      |       | titulo: str    |       | nome: str      |
+| email: str     |       | autor: str     |       | descricao: str |
+| senha: str     |       | paginas: int   |       | estilo: str    |
+| pontos: int    |       | estilo: str    |       +----------------+
++----------------+       | descricao: str |               ^
+        |                +----------------+               |
+        |                        ^                        |
+        |                        |                        |
+        v                        |                        |
++----------------+               |                        |
+| LeituraLivro   |--------------+                        |
++----------------+                                       |
+| id: int        |                                       |
+| id_usuario: int|                                       |
+| id_livro: int  |                                       |
+| data: datetime |                                       |
++----------------+                                       |
+        |                                                |
+        |                                                |
+        v                                                |
++----------------+                                       |
+| TroféuUsuário  |---------------------------------------+
++----------------+
+| id: int        |
+| id_usuario: int|
+| id_trofeu: int |
+| data: datetime |
++----------------+
+        </pre>
+        <p>Este diagrama mostra as principais entidades do sistema:</p>
+        <ul>
+            <li><strong>Usuário</strong>: Representa os usuários do sistema.</li>
+            <li><strong>Livro</strong>: Representa os livros disponíveis no sistema.</li>
+            <li><strong>LeituraLivro</strong>: Representa o registro de um livro lido por um usuário.</li>
+            <li><strong>Troféu</strong>: Representa os troféus que podem ser conquistados.</li>
+            <li><strong>TroféuUsuário</strong>: Representa os troféus conquistados por um usuário.</li>
+        </ul>
+    </div>
+
+    <div class="diagram-section">
+        <h2>Diagrama de Casos de Uso</h2>
+        <pre>
+                   +---------------------+
+                   |                     |
+                   |  Sistema "Esse eu   |
+                   |     já li!"         |
+                   |                     |
+                   +---------------------+
+                            ^
+                            |
+                            |
+                  +---------+---------+
+                  |                   |
+                  |                   |
++------------+    |    +---------+    |    +------------+
+|            |    |    |         |    |    |            |
+|  Visitante |----+--->|  Login  |    |    |  Usuário   |
+|            |    |    |         |    |    |  Logado    |
++------------+    |    +---------+    |    +------------+
+                  |                   |           |
+                  |                   |           |
+                  |                   |           |
+                  |                   |           v
+                  |                   |    +------------+
+                  |                   |    | Visualizar |
+                  |                   |    | Lista de   |
+                  |                   |    | Livros     |
+                  |                   |    +------------+
+                  |                   |           |
+                  |                   |           |
+                  |                   |           v
+                  |                   |    +------------+
+                  |                   |    | Visualizar |
+                  |                   |    | Livro      |
+                  |                   |    +------------+
+                  |                   |           |
+                  |                   |           |
+                  |                   |           v
+                  |                   |    +------------+
+                  |                   |    | Marcar     |
+                  |                   |    | Leitura de |
+                  |                   |    | Livro      |
+                  |                   |    +------------+
+                  |                   |           |
+                  |                   |           |
+                  |                   |           v
+                  |                   |    +------------+
+                  |                   |    | Visualizar |
+                  |                   |    | Ranking    |
+                  |                   |    +------------+
+                  |                   |           |
+                  |                   |           |
+                  |                   |           v
+                  |                   |    +------------+
+                  |                   |    | Visualizar |
+                  |                   |    | Pontos e   |
+                  |                   |    | Troféus    |
+                  |                   |    +------------+
+                  |                   |
+                  +-------------------+
+        </pre>
+        <p>Este diagrama mostra as principais funcionalidades do sistema e como os usuários interagem com ele. O visitante pode apenas fazer login, enquanto o usuário logado pode acessar todas as funcionalidades do sistema.</p>
+    </div>
+</body>
+</html>

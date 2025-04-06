@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Ranking - Esse eu já li!{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0"><i class="fas fa-trophy me-2"></i>Ranking dos Leitores</h4>
+    </div>
+    <div class="card-body">
+        <p class="lead">Os 10 leitores com maior pontuação:</p>
+        
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Pontuação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr {% if user.id == current_user.id %}class="table-primary"{% endif %}>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>
+                            {{ user.username }}
+                            {% if user.id == current_user.id %}
+                            <span class="badge bg-info">Você</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge bg-warning text-dark">
+                                <i class="fas fa-star me-1"></i>{{ user.points }} pontos
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% if current_user not in users %}
+        <div class="alert alert-info mt-4">
+            <p class="mb-0">
+                <i class="fas fa-info-circle me-1"></i>
+                Você ainda não está entre os 10 primeiros. Continue lendo para subir no ranking!
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

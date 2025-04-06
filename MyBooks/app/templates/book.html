@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }} - Esse eu já li!{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-book fa-5x text-primary mb-3"></i>
+                <h5 class="card-title">{{ book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
+                <div class="my-3">
+                    <span class="badge bg-primary">{{ book.genre }}</span>
+                    <span class="badge bg-secondary">{{ book.pages }} páginas</span>
+                </div>
+                <p class="card-text">
+                    <i class="fas fa-star text-warning me-1"></i>Vale {{ book.calculate_points() }} pontos
+                </p>
+                {% if already_read %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-1"></i>Você já leu este livro!
+                </div>
+                {% else %}
+                <form action="{{ url_for('mark_as_read', book_id=book.id) }}" method="post">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fas fa-check me-1"></i>Marcar como lido
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Detalhes do Livro</h4>
+            </div>
+            <div class="card-body">
+                <h5>Sinopse</h5>
+                <p>{{ book.description }}</p>
+                
+                <h5 class="mt-4">Informações</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Autor
+                        <span>{{ book.author }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Gênero
+                        <span>{{ book.genre }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Número de Páginas
+                        <span>{{ book.pages }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Pontuação
+                        <span><i class="fas fa-star text-warning me-1"></i>{{ book.calculate_points() }} pontos</span>
+                    </li>
+                </ul>
+                
+                <div class="mt-4">
+                    <a href="{{ url_for('books') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left me-1"></i>Voltar para a lista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

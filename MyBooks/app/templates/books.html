@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Livros - Esse eu já li!{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2><i class="fas fa-book me-2"></i>Livros Disponíveis</h2>
+    </div>
+    <div class="col-md-4">
+        <div class="dropdown text-end">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="genreDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-filter me-1"></i>Filtrar por Estilo
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="genreDropdown">
+                <li><a class="dropdown-item" href="{{ url_for('books') }}">Todos</a></li>
+                {% for genre in genres %}
+                <li><a class="dropdown-item" href="{{ url_for('books', genre=genre) }}">{{ genre }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for book in books.items %}
+    <div class="col">
+        <div class="card h-100 book-card">
+            {% if book.id in read_books %}
+            <div class="read-badge">
+                <i class="fas fa-check-circle me-1"></i>Lido
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
+                <p class="card-text">
+                    <span class="badge bg-primary">{{ book.genre }}</span>
+                    <span class="badge bg-secondary">{{ book.pages }} páginas</span>
+                </p>
+                <p class="card-text">{{ book.description[:100] }}{% if book.description|length > 100 %}...{% endif %}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{{ url_for('book', book_id=book.id) }}" class="btn btn-outline-primary">
+                        <i class="fas fa-info-circle me-1"></i>Detalhes
+                    </a>
+                    <span class="text-muted">
+                        <i class="fas fa-star text-warning me-1"></i>{{ book.calculate_points() }} pontos
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="mt-4 d-flex justify-content-center">
+    <nav aria-label="Navegação de páginas">
+        <ul class="pagination">
+            {% if books.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('books', page=books.prev_num, genre=request.args.get('genre', '')) }}">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+            </li>
+            {% endif %}
+            
+            {% for page_num in books.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if page_num %}
+                    {% if page_num == books.page %}
+                    <li class="page-item active">
+                        <a class="page-link" href="#">{{ page_num }}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('books', page=page_num, genre=request.args.get('genre', '')) }}">
+                            {{ page_num }}
+                        </a>
+                    </li>
+                    {% endif %}
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">...</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if books.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('books', page=books.next_num, genre=request.args.get('genre', '')) }}">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

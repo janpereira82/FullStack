@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Stories - Sistema "Esse eu já li!"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        h1 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .user-story {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .acceptance-tests {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .acceptance-tests li {
+            margin-bottom: 5px;
+        }
+        @media print {
+            body {
+                margin: 1cm;
+            }
+            .user-story {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>User Stories - Sistema "Esse eu já li!"</h1>
+
+    <div class="user-story">
+        <h2>User Story 1: Logar usuário</h2>
+        <p><strong>Como um</strong> usuário do sistema,<br>
+        <strong>Eu quero</strong> fazer login na plataforma,<br>
+        <strong>De modo que</strong> eu possa acessar minha conta e todas as funcionalidades do sistema.</p>
+
+        <p><strong>Tamanho:</strong> 3 pontos de história<br>
+        <strong>Valor de Negócio (BV):</strong> 8</p>
+        
+        <p><strong>Testes de Aceitação:</strong></p>
+        <ul class="acceptance-tests">
+            <li>Verificar se o usuário consegue fazer login com credenciais válidas</li>
+            <li>Verificar se o sistema exibe mensagem de erro para credenciais inválidas</li>
+            <li>Verificar se o usuário é redirecionado para a página principal após o login</li>
+        </ul>
+    </div>
+
+    <div class="user-story">
+        <h2>User Story 2: Visualizar lista de livros</h2>
+        <p><strong>Como um</strong> usuário logado,<br>
+        <strong>Eu quero</strong> visualizar a lista de livros disponíveis,<br>
+        <strong>De modo que</strong> eu possa encontrar livros para marcar como lidos.</p>
+
+        <p><strong>Tamanho:</strong> 2 pontos de história<br>
+        <strong>Valor de Negócio (BV):</strong> 7</p>
+        
+        <p><strong>Testes de Aceitação:</strong></p>
+        <ul class="acceptance-tests">
+            <li>Verificar se a lista de livros é exibida corretamente</li>
+            <li>Verificar se a paginação funciona corretamente (se houver muitos livros)</li>
+            <li>Verificar se é possível filtrar livros por estilo/categoria</li>
+        </ul>
+    </div>
+
+    <div class="user-story">
+        <h2>User Story 3: Visualizar livro</h2>
+        <p><strong>Como um</strong> usuário logado,<br>
+        <strong>Eu quero</strong> visualizar os detalhes de um livro específico,<br>
+        <strong>De modo que</strong> eu possa conhecer mais informações sobre ele antes de marcá-lo como lido.</p>
+
+        <p><strong>Tamanho:</strong> 2 pontos de história<br>
+        <strong>Valor de Negócio (BV):</strong> 5</p>
+        
+        <p><strong>Testes de Aceitação:</strong></p>
+        <ul class="acceptance-tests">
+            <li>Verificar se todos os detalhes do livro são exibidos corretamente (título, autor, número de páginas, estilo, etc.)</li>
+            <li>Verificar se o status de leitura do livro (lido/não lido) é exibido corretamente</li>
+            <li>Verificar se há um botão para marcar o livro como lido</li>
+        </ul>
+    </div>
+
+    <div class="user-story">
+        <h2>User Story 4: Marcar leitura de livro</h2>
+        <p><strong>Como um</strong> usuário logado,<br>
+        <strong>Eu quero</strong> marcar um livro como lido,<br>
+        <strong>De modo que</strong> eu possa ganhar pontos e acompanhar meu progresso de leitura.</p>
+
+        <p><strong>Tamanho:</strong> 5 pontos de história<br>
+        <strong>Valor de Negócio (BV):</strong> 10</p>
+        
+        <p><strong>Testes de Aceitação:</strong></p>
+        <ul class="acceptance-tests">
+            <li>Verificar se o sistema registra corretamente o livro como lido</li>
+            <li>Verificar se os pontos são calculados corretamente com base no número de páginas</li>
+            <li>Verificar se o troféu é concedido ao atingir 5 livros do mesmo estilo</li>
+            <li>Verificar se não é possível marcar o mesmo livro como lido mais de uma vez</li>
+        </ul>
+    </div>
+
+    <div class="user-story">
+        <h2>User Story 5: Visualizar ranking de usuários</h2>
+        <p><strong>Como um</strong> usuário logado,<br>
+        <strong>Eu quero</strong> visualizar o ranking dos 10 usuários com maior pontuação,<br>
+        <strong>De modo que</strong> eu possa ver minha posição em relação aos outros usuários.</p>
+
+        <p><strong>Tamanho:</strong> 3 pontos de história<br>
+        <strong>Valor de Negócio (BV):</strong> 6</p>
+        
+        <p><strong>Testes de Aceitação:</strong></p>
+        <ul class="acceptance-tests">
+            <li>Verificar se o ranking exibe os 10 usuários com maior pontuação em ordem decrescente</li>
+            <li>Verificar se as informações de cada usuário (nome e pontuação) são exibidas corretamente</li>
+            <li>Verificar se o ranking é atualizado quando há mudanças na pontuação dos usuários</li>
+        </ul>
+    </div>
+
+    <div class="user-story">
+        <h2>User Story 6: Visualizar pontos e troféus de usuário</h2>
+        <p><strong>Como um</strong> usuário logado,<br>
+        <strong>Eu quero</strong> visualizar meus pontos e troféus conquistados,<br>
+        <strong>De modo que</strong> eu possa acompanhar meu progresso e conquistas no sistema.</p>
+
+        <p><strong>Tamanho:</strong> 3 pontos de história<br>
+        <strong>Valor de Negócio (BV):</strong> 8</p>
+        
+        <p><strong>Testes de Aceitação:</strong></p>
+        <ul class="acceptance-tests">
+            <li>Verificar se os pontos do usuário são exibidos corretamente</li>
+            <li>Verificar se todos os troféus conquistados são exibidos corretamente</li>
+            <li>Verificar se há informações sobre como conquistar novos troféus</li>
+        </ul>
+    </div>
+</body>
+</html>
